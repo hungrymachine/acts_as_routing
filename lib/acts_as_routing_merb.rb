@@ -4,14 +4,16 @@ Merb::Router::Resources.class_eval do
   def resource_options_with_acts_as_routing
     resource_options_without_acts_as_routing + [ :acts_as ]
   end
-  alias_method_chain :resource_options, :acts_as_routing
+  alias :resource_options_without_acts_as_routing :resource_options
+  alias :resource_options :resource_options_with_acts_as_routing
 
   # always have a block, so resource_block gets called
   def resources_with_empty_block(*args, &block)
     block ||= Proc.new {}
     resources_without_empty_block(*args, &block)
   end
-  alias_method_chain :resources, :empty_block
+  alias :resources_without_empty_block :resources
+  alias :resources :resources_with_empty_block
 
   def resource_block(builders, &block)
     all_acts_as = [@options.delete(:acts_as)].flatten.compact

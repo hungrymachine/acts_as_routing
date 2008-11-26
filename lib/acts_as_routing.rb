@@ -18,5 +18,5 @@ module ActsAsRouting
   end
 end
 
-require 'acts_as_routing_rails' if defined?(ActionController::Routing)
-require 'acts_as_routing_merb' if defined?(Merb::Router)
+require File.join(File.dirname(__FILE__), 'acts_as_routing_rails') if defined?(ActionController::Routing)
+require File.join(File.dirname(__FILE__), 'acts_as_routing_merb') if defined?(Merb::Router)
