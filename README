@@ -10,6 +10,7 @@ Rails Example
 	# in acts_as_commentable plugin
 	ActionController::Routing.routes_for_acts_as(:commentable) do |map|
 		map.resources :comments
+		map.best_comment '/best-comment', :controller => 'comments', :action => 'best'
 	end
 
 	# in acts_as_reviewable plugin
@@ -24,6 +25,8 @@ Rails Example
 
 	# in some view
 	<%=person_comments_path(Person.first)%>
+	<%=person_reviews_path(Person.first)%>
+	<%=person_best_comment_path(Person.first)%>
 
 
 Merb Example
@@ -32,6 +35,7 @@ Merb Example
 	# in acts_as_commentable plugin
 	Merb::Router.routes_for_acts_as(:commentable) do |map|
 		map.resources :comments
+		map.match('/best-comment').to(:controller => 'comments', :action => 'best').name(:best_comment)
 	end
 
 	# in acts_as_reviewable plugin
@@ -46,6 +50,8 @@ Merb Example
 
 	# in some view
 	<%=url(:person_comments, :person => Person.first)%>
+	<%=url(:person_reviews, :person => Person.first)%>
+	<%=url(:person_best_comment, :person => Person.first)%>
 
 
 Copyright (c) 2008 HungryMachine, released under the MIT license
